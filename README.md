@@ -3,7 +3,7 @@ Blog for the Sandbox Worms team
 
 #How to Add Posts
 
-**Assumptions: **
+**Assumptions:**
 
 
 1. Hugo is installed
