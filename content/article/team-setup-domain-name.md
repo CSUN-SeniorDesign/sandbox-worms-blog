@@ -1,7 +1,7 @@
 ---
 title: "Team Setup Domain Name"
 date: 2018-08-29T22:59:35-07:00
-draft: true
+draft: false
 
 categories: [Project 0]
 tags: []
