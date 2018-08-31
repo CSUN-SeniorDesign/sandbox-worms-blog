@@ -8,7 +8,7 @@ Our URL can be found at: **[https://www.sandboxworms.me/](https://www.sandboxwor
 - [x] Build a Team (T)
 - [x] Github setup
 - [x] AWS Account
-- [] AWS Educate for all Team Members
+- [ ] AWS Educate for all Team Members
 - [x] Slack
 - [x] Purchase a Domain : sandboxworms.me
 - [x] Setup AWS Virtual Private Cloud
