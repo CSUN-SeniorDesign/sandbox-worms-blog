@@ -1,7 +1,7 @@
 ---
 title: "John's Blog 1"
 date: 2018-08-30T16:25:20-07:00
-draft: true 
+draft: false 
 ---
 
 To start, I first downloaded Git on my local machine and then proceeded to use Git Bash for subsequent exercises. To install Hugo, I first installed Chocolately to run the install through Windows CMD, then ran the install packages for Hugo. From there, Hugo is able to make the .md files needed for the blog post as well as generate the static site. 

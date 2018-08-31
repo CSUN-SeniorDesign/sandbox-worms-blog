@@ -1,7 +1,7 @@
 ---
 title: "InitialSetup"
 date: 2018-08-30T15:04:26-07:00
-draft: true
+draft: false
 
 categories: [Project 0]
 tags: []
