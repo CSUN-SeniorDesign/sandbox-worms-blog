@@ -1,5 +1,5 @@
 title = "Sandbox Worms"
-baseURL = "http://www.sandboxworms.me/"
+baseURL = "https://www.sandboxworms.me/"
 theme = "bilberry-hugo-theme"
 
 enableRobotsTXT = true
@@ -11,7 +11,7 @@ DefaultContentLanguage = "en"
 googleAnalytics = "false"
 
 # Enable / Disable comments on the articles via Disqus.
-disqusShortname = "bilberry-hugo-theme"
+disqusShortname = ""
 
 [params]
   # Favicon for the browser's favorites and tabs
@@ -100,13 +100,13 @@ disqusShortname = "bilberry-hugo-theme"
 
 # customize your available languages for your multi-langual site
 # or delete the [Languages] blog to use the theme with only one supported language
-[Languages]
-  [Languages.en]
-    weight = 1
-  [Languages.de]
-    weight = 2
-    title = "Mein cooler neuer Blog"
-    subtitle = "Hallo Welt! Dies ist der epischste Untertitel aller Zeiten."
+#[Languages]
+#  [Languages.en]
+#    weight = 1
+#  [Languages.de]
+#    weight = 2
+#    title = "Mein cooler neuer Blog"
+#    subtitle = "Hallo Welt! Dies ist der epischste #Untertitel aller Zeiten."
 
 # don't change anything below
 [taxonomies]
