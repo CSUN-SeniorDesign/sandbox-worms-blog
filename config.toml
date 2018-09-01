@@ -51,7 +51,7 @@ disqusShortname = ""
     gravatarEMail = ""
 
     # set an path to the image file you want to use | overwrites gravatar
-    customImage = "/static/img/Sandwurm.jpg"
+    customImage = "img/Sandwurm.jpg"
 
     # always display the top navigation (with pages and search) on non-mobile screens
     permanentTopNav = false
