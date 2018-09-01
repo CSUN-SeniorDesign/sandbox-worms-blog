@@ -7,7 +7,7 @@ categories: [Project 0]
 tags: []
 author: "Aubrey Nigoza"
 ---
-As we setup our team’s infrastructure, we divided the tasks between each other. I have been tasked to purchase the domain name and certificate for our team. To make sure that the access to the account will be available without any interruption because of member change, I have decided to create a new email address that will be shared to the entire team. 
+As we setup our team’s infrastructure, we divided the tasks between each other. I have been tasked to purchase the domain name and certificate for our team. To make sure that the access to the account will be available without any interruption because of member change, I have decided to create a new email address that will be shared with the entire team. 
 
 I have chosen to use namecheap.com as the domain registrar. I also purchased a certificate together with the domain name purchase. This certificate will be used to secure the team’s website. However, I think that we should still give Let’s Encrypt free certificate a try once we have our EC2 instance. This will allow us to be exposed to using a purchased certificate (namecheap.com) and free certificate (Let’s Encrypt). Namecheap also offered a whois privacy filter to mask the information that I have provided. 
 
