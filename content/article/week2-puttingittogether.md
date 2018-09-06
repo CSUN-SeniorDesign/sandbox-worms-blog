@@ -39,7 +39,7 @@ Another thing that I wanted to talk about is our experience in collaboration. Be
 
 An example of setting up a system with respect to multiple people collaborating is the folder permissions in our DocumentRoot. Permissions had to be set so that, if memberA deployed our static html on day 1. On day 2, all other team members should be able to delete or modify these files without sharing credentials and without having to change the permission on the file. It becomes a little bit complicated when we factor in that we also need to give Apache r-- access to the files and r-X access to the folders. This was a welcome challenge and forces us to think back to lessons learned in CIT 210, 360 and other classes. 
 
-We settled in to creating a webadmin group. Give user rwx access, group r-- and other r-X on File permission. In the ACL, give user rwx, group rwx and other r--. The capital X, allows for execute on directories only. We also set it so that any files or directories created in the folder will have a group of webadmin.
+We settled in to creating a webadmin group. Give user rwx access, group r-- and other r-X on File permission. In the ACL, give user rw, group rwx and other r--. The capital X, allows for execute on directories only. We also set it so that any files or directories created in the folder will have a group of webadmin.
 
 It looks like this
 
@@ -53,19 +53,20 @@ It looks like this
 	other::r--
 
 
-	-rw-r--r--+ 1 john webadmins  8237 Sep  1 18:35 404.html
-	drwxr-xr-x+ 8 john webadmins  4096 Sep  4 01:01 article
-	drwxr-xr-x+ 7 john webadmins  4096 Sep  4 01:01 author
-	drwxr-xr-x+ 3 john webadmins    58 Sep  4 01:01 categories
-	drwxr-xr-x+ 3 john webadmins    82 Sep  4 01:02 dist
-	drwxr-xr-x+ 2 john webadmins    26 Sep  4 01:02 img
-	-rw-r--r--+ 1 john webadmins 15146 Sep  1 18:35 index.html
-	-rw-r--r--+ 1 john webadmins   790 Sep  1 18:35 index.json
-	-rw-r--r--+ 1 john webadmins  4285 Sep  1 18:35 index.xml
-	drwxr-xr-x+ 3 john webadmins    15 Sep  4 01:02 page
-	-rw-r--r--+ 1 john webadmins    13 Sep  1 18:35 robots.txt
-	-rw-r--r--+ 1 john webadmins  2450 Sep  1 18:35 sitemap.xml
-	drwxr-xr-x+ 2 john webadmins    41 Sep  4 01:02 tags
+	-rw-rw-r--+ 1 john webadmins  8413 Sep  6 06:45 404.html
+	drwxrwxr-x+ 9 john webadmins  4096 Sep  6 07:43 article
+	drwxrwxr-x+ 7 john webadmins  4096 Sep  6 07:43 author
+	drwxrwxr-x+ 3 john webadmins    58 Sep  6 07:43 categories
+	drwxrwxr-x+ 3 john webadmins    82 Sep  6 07:44 dist
+	drwxrwxr-x+ 2 john webadmins    26 Sep  6 07:44 img
+	-rw-rw-r--+ 1 john webadmins 15763 Sep  6 06:45 index.html
+	-rw-rw-r--+ 1 john webadmins   972 Sep  6 06:45 index.json
+	-rw-rw-r--+ 1 john webadmins  5080 Sep  6 06:45 index.xml
+	drwxrwxr-x+ 4 john webadmins    24 Sep  6 07:44 page
+	-rw-rw-r--+ 1 john webadmins    13 Sep  6 06:45 robots.txt
+	-rw-rw-r--+ 1 john webadmins  2942 Sep  6 06:45 sitemap.xml
+	drwxrwxr-x+ 4 john webadmins    63 Sep  6 07:44 tags
+
 
 
   
