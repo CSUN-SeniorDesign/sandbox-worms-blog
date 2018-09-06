@@ -1,0 +1,9 @@
+---
+title: "John's Blog 2"
+date: 2018-09-04T13:55:20-07:00
+draft: false
+---
+
+This week, I was able to add 4 more group members to our AWS organization after Amazon support was able to get back to me on my support ticket from last week. After inviting the remaining members, I proceeded to make IAM users for each organization member, thus giving them access to the running EC2 instance as well as permission to use the newly-established VPC for their own instances, should they choose to start them. These new IAM users were added to the Group_Members security group, which allowed them Administrative access, enabling them to view online resources on the master account.
+The currently running instance has been tested and can now be connected to via the URL sandboxworms.me. The site, generated using Hugo, utilizes the sandboxworms_blog repository on github while the https://docs.sandboxworms.me/ uses the sandboxworms_infrastructure repository. Currently, Github holds the majority of the sites' files while new content and posts can be made from the command line and posted to the site proper using WinSCP for file transfer. Essentially, after a new post is made from a pulled repository, we use the hugo command to generate the html files in the directory, we then connect to the instance using WinSCP and replace the html file in the site's public directory.  
+The same process holds for posting on the docs.sandboxworms.me site for the documentation, however the .md files are structured differently as to comply with design documentation standards. Design documentation on the docs.sandboxworms.me site currently includes system and security design, as well as the documentation on how to create a new user on the EC2 instance, how to add posts, and how to deploy blogs. All subsequent changes made to the sites are reflected on the respective github repository according to standards outlined for last week's and this week's activities. 
