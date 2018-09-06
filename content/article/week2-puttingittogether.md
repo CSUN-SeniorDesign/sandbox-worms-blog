@@ -1,11 +1,11 @@
 ---
 title: "Week2 - Putting it all together"
 date: 2018-09-05T22:46:48-07:00
-draft: true
+draft: false
 
 categories: [Project 0]
 tags: [vpc, aws]
-author: "[Aubrey Nigoza](mailto:aubrey.nigoza.34@my.csun.edu)"
+author: "Aubrey Nigoza"
 ---
 2nd week is just coming to close. Project 0 is 98% done, pending some documentations. It feels like we just finished the "main" project of a course. We built everything, from purchasing the domain, nameserver setup, setting up the network, setting up workflow for collaboration, setting new virtual machine, setting up apache, and ending with a finished website accessible in the internet. But, this is just the beginning of the course. It is hard to put in to words the excitement that I and most likely my remaining classmates are feeling. In this post, I am going to talk about two concepts that I hope will stick to my long term memory better because I wrote about it.
 
