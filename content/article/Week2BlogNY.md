@@ -1,7 +1,7 @@
 ---
 title: "Week2BlogNY"
 date: 2018-09-07T18:41:15-07:00
-draft: true
+draft: false
 Categories: [Project 0]
 Tags:[]
 Author: "Nicholas Yoon"
