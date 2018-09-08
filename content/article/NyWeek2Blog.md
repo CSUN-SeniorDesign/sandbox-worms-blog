@@ -3,7 +3,7 @@ title: "NyWeek2Blog"
 date: 2018-09-07T16:10:35-07:00
 draft: true
 Categories: [Project 0]
-Tags:[]
+Tags: []
 Author: "Nicholas Yoon"
 ---
 
