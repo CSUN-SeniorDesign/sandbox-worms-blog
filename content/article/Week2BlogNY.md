@@ -1,12 +1,11 @@
 ---
-title: "NyWeek2Blog"
-date: 2018-09-07T16:10:35-07:00
+title: "Week2BlogNY"
+date: 2018-09-07T18:41:15-07:00
 draft: true
 Categories: [Project 0]
 Tags:[]
 Author: "Nicholas Yoon"
 ---
-
 Creating Key Pairs to allow users access without having to administer passwords was a bit extensive, but makes plenty of sense. By giving users access is necessary, 
 but allowing full root access is not. It's also a preliminary step we can take to ensure any ill experienced user damage to the EC2 instance. I said that it was quite 
 extensive because we had to first create the key pairs and download both Private/Public Keys (that part was easy). It took some research to figure out why the original 
@@ -22,6 +21,4 @@ static html files to the DocumentRoot. Then we ran the sudo restorecon command w
 It's been a rough couple of weeks because we weren't able to meet as a group in person as much as we had liked to. Distributing tasks properly is definitely an issue we'll
 need to focus on, but it looks like we'll be going into the start of project 1 with the strong understanding of what changes will need to be made in order to improve the
 workflow as a group. Several of us are still not as familiar as we'd like to be with accessing and configuring the EC2 Instance so we plan on trying to re-work project 0 this week. 
-Throughout this weekend, I plan on doing some research on Ansible and Terraform in hopes of being able to get my feet a little wet with the material. 
-
-
+Throughout this weekend, I plan on doing some research on Ansible and Terraform in hopes of being able to get my feet a little wet with the material.
