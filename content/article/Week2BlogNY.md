@@ -3,7 +3,7 @@ title: "Week2BlogNY"
 date: 2018-09-07T18:41:15-07:00
 draft: false
 categories: [Project 0]
-tags:[]
+tags: []
 author: "Nicholas Yoon"
 ---
 Creating Key Pairs to allow users access without having to administer passwords was a bit extensive, but makes plenty of sense. By giving users access is necessary, 
