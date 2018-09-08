@@ -2,9 +2,9 @@
 title: "Week2BlogNY"
 date: 2018-09-07T18:41:15-07:00
 draft: false
-Categories: [Project 0]
-Tags:[]
-Author: "Nicholas Yoon"
+categories: [Project 0]
+tags:[]
+author: "Nicholas Yoon"
 ---
 Creating Key Pairs to allow users access without having to administer passwords was a bit extensive, but makes plenty of sense. By giving users access is necessary, 
 but allowing full root access is not. It's also a preliminary step we can take to ensure any ill experienced user damage to the EC2 instance. I said that it was quite 
