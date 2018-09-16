@@ -1,3 +1,11 @@
+---
+title: "Marks-Blogpost-Week3  "
+date: 2018-09-12T15:11:01-07:00
+draft: false
+Categories: [Project 1]
+Tags: []
+Author: "Mark"
+---
 Marks-Blogpost-Week3                                                      Sept 14,2018
 
 This week was another challenging week.  I have worked on 
