@@ -9,6 +9,7 @@ Author: "John Vinuya"
 This week we created and configured the application load balancer which can decrypt ssl/tls communcation.
 
 First, the certificate had to be added to Amazon:
+
 		resource "aws_iam_server_certificate" "sandboxwormscert" {
 		name      = "sandboxwormscert"
 		certificate_body = "${file("certificates/www_sandboxworms_me.crt")}"
