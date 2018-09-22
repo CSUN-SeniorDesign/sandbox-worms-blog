@@ -1,3 +1,11 @@
+---
+title: "Marks's Blog Week 3"
+date: 2018-09-21T19:15:01
+draft: false
+Categories: [Project 1]
+Tags: []
+Author: "Mark Siegmund"
+---
 Marks Blogpost-Week4						Sept 22, 2018
 
 Preformed my first destroy on Terrafrom.  It was intimidating and I was worried that I was going to damage work done by my group.  Apply brought it all back and Bastion instance was using variables for  the key_name, subnet ID, and the security group.  I do not understand hot to find an ami-xxxxx for the instance.  Aubre helped me with it.  (he gave it to me)  However I searched using Google, and AWS search but found nothing helpful.  By using filters for finding the ami# when making the instance I was able to find one for CentOS, but I could not find the RedHad one that Aubrey found. 
