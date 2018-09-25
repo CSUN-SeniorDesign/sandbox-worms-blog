@@ -16,4 +16,4 @@ jobs:
           name: test our generated HTML files
           command: |
             htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
-            --empty-alt-ignore --assume-extension=.html --disable_external
+            --empty-alt-ignore --assume-extension --disable_external
