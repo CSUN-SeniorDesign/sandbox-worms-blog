@@ -11,7 +11,7 @@ jobs:
      - checkout
      - run:
          name: "Run Hugo"
-         HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR
+         command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR
      - run:
           name: test our generated HTML files
           command: |
