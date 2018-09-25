@@ -4,16 +4,16 @@ jobs:
   build:
     docker: 
      - image: felicianotech/docker-hugo:0.47.1
-    working_directory: ~/hugo
+    working_directory: /hugo
     environment: 
-      HUGO_BUILD_DIR: ~/hugo/public
+      HUGO_BUILD_DIR: /hugo/public
     steps:
      - checkout
      - run:
          name: "Run Hugo"
          command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
-#     - run:
-#          name: test our generated HTML files
-#          command: |
-#            htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
-#            --empty-alt-ignore --assume-extension --disable_external --checks_to_ignore LinkCheck, ImageCheck
+     - run:
+          name: test our generated HTML files
+          command: |
+            htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
+             --empty-alt-ignore --assume-extension --disable_external
