@@ -41,7 +41,7 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" = "project2_staging" ]; then
               aws s3 cp /hugo/${CIRCLE_SHA1}.tar.gz \
-              s3://sandboxworms-packages-aubrey01/staging
+              s3://sandboxworms-packages-aubrey01/staging/${CIRCLE_SHA1}.tar.gz
             else
               echo "Not master branch, dry run only"
             fi
