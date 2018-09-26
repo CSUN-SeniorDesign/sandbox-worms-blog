@@ -6,7 +6,7 @@ jobs:
 #add multiple executory if will speed up process
     filters: 
       branches:
-        only: master
+        only: master #useless? why?
     docker: 
      - image: felicianotech/docker-hugo:0.47.1
     working_directory: /hugo
