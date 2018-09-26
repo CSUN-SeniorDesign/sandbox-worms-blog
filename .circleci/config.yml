@@ -25,9 +25,13 @@ jobs:
           command: |
             htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
              --empty-alt-ignore --assume-extension --disable_external      
-     - deploy:
+  deploy:
+    working_directory: /hugo
+    steps:
+      - run:
           name: Tarball the public
           command: tar -zcvf /hugo/blog.tar.gz -C $HUGO_BUILD_DIR 
+      - run:
           name: deploy to AWS
           command: |
             if [ "${CIRCLE_BRANCH}" = "project2_staging" ]; then
