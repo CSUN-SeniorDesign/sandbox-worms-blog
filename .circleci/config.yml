@@ -25,20 +25,17 @@ jobs:
           command: |
             htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
              --empty-alt-ignore --assume-extension --disable_external      
-  deploy:
-    docker: 
-     - image: felicianotech/docker-hugo:0.47.1
-    working_directory: /hugo
-    steps:
-      - run:
-          name: Tarball the public
-          command: tar -zcvf /hugo/blog.tar.gz -C $HUGO_BUILD_DIR 
-      - run:
-          name: deploy to AWS
-          command: |
-            if [ "${CIRCLE_BRANCH}" = "project2_staging" ]; then
-              aws s3 cp /hugo/blog.tar.gz \
-              s3://sandboxworms-packages-aubrey01/staging
-            else
-              echo "Not master branch, dry run only"
-            fi
+     - deploy:
+          steps:
+            - run:
+                name: Tarball the public
+                command: tar -zcvf /hugo/blog.tar.gz -C $HUGO_BUILD_DIR 
+            - run:
+                name: deploy to AWS
+                command: |
+                  if [ "${CIRCLE_BRANCH}" = "project2_staging" ]; then
+                    aws s3 cp /hugo/blog.tar.gz \
+                    s3://sandboxworms-packages-aubrey01/staging
+                  else
+                    echo "Not master branch, dry run only"
+                  fi
