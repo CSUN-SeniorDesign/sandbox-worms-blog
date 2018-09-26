@@ -26,6 +26,8 @@ jobs:
             htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
              --empty-alt-ignore --assume-extension --disable_external      
   deploy:
+    docker: 
+     - image: felicianotech/docker-hugo:0.47.1
     working_directory: /hugo
     steps:
       - run:
