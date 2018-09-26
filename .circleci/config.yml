@@ -20,3 +20,12 @@ jobs:
           command: |
             htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
              --empty-alt-ignore --assume-extension --disable_external
+     - deploy:
+          name: deploy to AWS
+          command: |
+            if [ "${CIRCLE_BRANCH}" = "project2_staging" ]; then
+              aws s3 sync $HUGO_BUILD_DIR \
+              s3://your-bucket-name/your-subfolder --delete
+            else
+              echo "Not master branch, dry run only"
+            fi
