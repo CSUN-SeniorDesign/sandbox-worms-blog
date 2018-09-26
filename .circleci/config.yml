@@ -2,6 +2,9 @@
 version: 2
 jobs:
   build:
+    filters: 
+      branches:
+        only: project2_staging
     docker: 
      - image: felicianotech/docker-hugo:0.47.1
     working_directory: /hugo
