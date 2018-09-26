@@ -2,6 +2,8 @@
 version: 2
 jobs:
   build:
+#add parallelism
+#add multiple executory if will speed up process
     filters: 
       branches:
         only: master
@@ -26,9 +28,15 @@ jobs:
             htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
              --empty-alt-ignore --assume-extension --disable_external      
      - deploy:
+          filters: 
+            branches:
+                ignore: /pull\/.*/
           name: Tarball the public
           command: tar -zcvf /hugo/${CIRCLE_SHA1}.tar.gz $HUGO_BUILD_DIR 
      - deploy:
+          filters: 
+            branches:
+                ignore: /pull\/.*/
           name: deploy to AWS
           command: |
             if [ "${CIRCLE_BRANCH}" = "project2_staging" ]; then
