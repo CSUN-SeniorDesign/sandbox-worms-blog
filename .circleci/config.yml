@@ -32,7 +32,7 @@ jobs:
           name: deploy to AWS
           command: |
             if [ "${CIRCLE_BRANCH}" = "project2_staging" ]; then
-              aws s3 cp $HUGO_BUILD_DIR/blog.tar.gz \
+              aws s3 cp /blog.tar.gz \
               s3://sandboxworms-packages-aubrey01/staging
             else
               echo "Not master branch, dry run only"
