@@ -24,11 +24,10 @@ jobs:
           name: Test Hugo Build Static HTML
           command: |
             htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
-             --empty-alt-ignore --assume-extension --disable_external
-     - run:     
-          name: Tarball the public
-          command: tar -zcvf /hugo/blog.tar.gz -C $HUGO_BUILD_DIR        
+             --empty-alt-ignore --assume-extension --disable_external      
      - deploy:
+          name: Tarball the public
+          command: tar -zcvf /hugo/blog.tar.gz -C $HUGO_BUILD_DIR 
           name: deploy to AWS
           command: |
             if [ "${CIRCLE_BRANCH}" = "project2_staging" ]; then
