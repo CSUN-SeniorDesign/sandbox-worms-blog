@@ -31,7 +31,7 @@ jobs:
           name: deploy to AWS
           command: |
             if [ "${CIRCLE_BRANCH}" = "project2_staging" ]; then
-              aws s3 sync /hugo/blog.tar.gz \
+              aws s3 cp /hugo/blog.tar.gz \
               s3://sandboxworms-packages-aubrey01/staging --delete
             else
               echo "Not master branch, dry run only"
