@@ -35,9 +35,6 @@ jobs:
     parallelism: 3
     environment: 
       HUGO_BUILD_DIR: /hugo/public
-    branches:
-      only:
-        - project2_staging
     steps:
      - checkout
      - run:
@@ -73,9 +70,6 @@ jobs:
     parallelism: 3
     environment: 
       HUGO_BUILD_DIR: /hugo/public
-    branches:
-      only:
-        - master
     steps:
      - checkout
      - run:
