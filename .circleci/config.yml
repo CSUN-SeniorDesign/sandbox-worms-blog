@@ -1,7 +1,7 @@
 ---
 version: 2
 jobs:
-  setup:
+  build:
     docker: 
      - image: felicianotech/docker-hugo:0.47.1
     steps:
@@ -10,9 +10,6 @@ jobs:
           command: |
             apk add --update python python-dev py-pip build-base
             pip install awscli
-  build:
-    docker: 
-     - image: felicianotech/docker-hugo:0.47.1
     working_directory: /hugo
     environment: 
       HUGO_BUILD_DIR: /hugo/public
@@ -21,11 +18,13 @@ jobs:
      - run:
          name: "Run Hugo"
          command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
+  test:     
      - run:
           name: Test Hugo Build Static HTML
           command: |
             htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
              --empty-alt-ignore --assume-extension --disable_external      
+  package:
      - deploy:
           filters: 
             branches:
@@ -47,8 +46,8 @@ jobs:
 
 workflows:
   version: 2
-  setup-build-package-and-deploy:
+  build-test-package-deploy:
     jobs:
-     - build:
+     - test:
         requires:
-          - setup
+          - build
