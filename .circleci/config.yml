@@ -112,10 +112,6 @@ workflows:
       - test: #useful if there are multiple tests, so we can run them together
           requires:
             - build
-      - hold:
-          type: approval
-          requires:
-            - test
       - deploystaging:
           filters:
             branches:
@@ -126,5 +122,3 @@ workflows:
           filters:
             branches:
               only: master
-          requires:
-            hold
