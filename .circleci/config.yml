@@ -1,24 +1,21 @@
 ---
 version: 2
 jobs:
-  build:
-#add parallelism
-#add multiple executory if will speed up process
-    filters: 
-      branches:
-        only: master #useless? why?
+  setup:
     docker: 
      - image: felicianotech/docker-hugo:0.47.1
+    steps:
+     - run:
+          name: Install AWS CLI 
+          command: |
+            apk add --update python python-dev py-pip build-base
+            pip install awscli
+  build:  
     working_directory: /hugo
     environment: 
       HUGO_BUILD_DIR: /hugo/public
     steps:
      - checkout
-     - run:
-          name: install AWS CLI 
-          command: |
-            apk add --update python python-dev py-pip build-base
-            pip install awscli
      - run:
          name: "Run Hugo"
          command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
@@ -41,7 +38,7 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" = "project2_staging" ]; then
               aws s3 cp /hugo/${CIRCLE_SHA1}.tar.gz \
-              s3://sandboxworms-packages-aubrey01/staging/${CIRCLE_SHA1}.tar.gz
+              s3://sandboxworms-packages-92618/staging/${CIRCLE_SHA1}.tar.gz
             else
               echo "Not master branch, dry run only"
             fi
