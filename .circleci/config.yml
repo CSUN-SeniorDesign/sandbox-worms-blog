@@ -112,7 +112,13 @@ workflows:
               only: project2_staging
           requires:
             - test
+      - hold:
+          type: approval
+          requires: 
+            - test
       - deploymaster:
           filters:
             branches:
               only: master
+          requires:
+            - hold
