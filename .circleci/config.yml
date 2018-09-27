@@ -35,6 +35,9 @@ jobs:
     parallelism: 3
     environment: 
       HUGO_BUILD_DIR: /hugo/public
+    branches:
+      only:
+        - project2_staging
     steps:
      - checkout
      - run:
@@ -71,6 +74,10 @@ workflows:
       - test: #useful if there are multiple tests, so we can run them together
           requires:
             - build
+      - hold:
+          type: approval
+          requires:
+            - test
       - deploy:
           requires:
             - test
