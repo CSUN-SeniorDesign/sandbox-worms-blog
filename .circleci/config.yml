@@ -4,8 +4,35 @@ jobs:
   build:
     docker: 
      - image: felicianotech/docker-hugo:0.47.1
-    parallelism: 2
     working_directory: /hugo
+    environment: 
+      HUGO_BUILD_DIR: /hugo/public
+    steps:
+     - checkout
+     - run:
+         name: "Run Hugo"
+         command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
+  test:
+    docker: 
+     - image: felicianotech/docker-hugo:0.47.1
+    working_directory: /hugo
+    environment: 
+      HUGO_BUILD_DIR: /hugo/public
+    steps:
+     - checkout
+     - run:
+         name: "Run Hugo"
+         command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
+     - run:
+          name: Test Hugo Build Static HTML
+          command: |
+            htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
+             --empty-alt-ignore --assume-extension --disable_external      
+  deploy:
+    docker: 
+     - image: felicianotech/docker-hugo:0.47.1
+    working_directory: /hugo
+    parallelism: 3
     environment: 
       HUGO_BUILD_DIR: /hugo/public
     steps:
@@ -36,25 +63,14 @@ jobs:
             else
               echo "Not master branch, dry run only"
             fi
-  test:
-    docker: 
-     - image: felicianotech/docker-hugo:0.47.1
-    working_directory: /hugo
-    environment: 
-      HUGO_BUILD_DIR: /hugo/public
-    steps:
-     - checkout
-     - run:
-         name: "Run Hugo"
-         command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
-     - run:
-          name: Test Hugo Build Static HTML
-          command: |
-            htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
-             --empty-alt-ignore --assume-extension --disable_external      
 workflows:
   version: 2
   setup-build-package-and-deploy:
     jobs:
-     - build   
-     - test
+      - build
+      - test: #useful if there are multiple tests, so we can run them together
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
