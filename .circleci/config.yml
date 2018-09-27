@@ -57,4 +57,4 @@ workflows:
   setup-build-package-and-deploy:
     jobs:
      - build   
-     - test:
+     - test
