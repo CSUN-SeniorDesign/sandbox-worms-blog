@@ -1,24 +1,30 @@
 ---
 version: 2
 jobs:
-  setup:
+  build:
     docker: 
      - image: felicianotech/docker-hugo:0.47.1
-    steps:
-     - run:
-          name: Install AWS CLI 
-          command: |
-            apk add --update python python-dev py-pip build-base
-            pip install awscli
-  build:
+    parallelism: 2
     working_directory: /hugo
     environment: 
       HUGO_BUILD_DIR: /hugo/public
     steps:
      - checkout
      - run:
+          name: Install AWS CLI 
+          command: |
+            apk add --update python python-dev py-pip build-base
+            pip install awscli
+     - run:
          name: "Run Hugo"
          command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
+  test:
+    docker: 
+     - image: felicianotech/docker-hugo:0.47.1
+    working_directory: /hugo
+    environment: 
+      HUGO_BUILD_DIR: /hugo/public
+     steps:
      - run:
           name: Test Hugo Build Static HTML
           command: |
@@ -47,7 +53,7 @@ workflows:
   version: 2
   setup-build-package-and-deploy:
     jobs:
-     - setup   
-     - build:
+     - build   
+     - test:
         requires:
-          - setup
+          - build
