@@ -18,18 +18,6 @@ jobs:
      - run:
          name: "Run Hugo"
          command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
-  test:
-    docker: 
-     - image: felicianotech/docker-hugo:0.47.1
-    working_directory: /hugo
-    environment: 
-      HUGO_BUILD_DIR: /hugo/public
-    steps:
-     - run:
-          name: Test Hugo Build Static HTML
-          command: |
-            htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
-             --empty-alt-ignore --assume-extension --disable_external      
      - deploy:
           filters: 
             branches:
@@ -48,12 +36,25 @@ jobs:
             else
               echo "Not master branch, dry run only"
             fi
-
+  test:
+    docker: 
+     - image: felicianotech/docker-hugo:0.47.1
+    working_directory: /hugo
+    environment: 
+      HUGO_BUILD_DIR: /hugo/public
+    steps:
+     - checkout
+     - run:
+         name: "Run Hugo"
+         command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
+     - run:
+          name: Test Hugo Build Static HTML
+          command: |
+            htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
+             --empty-alt-ignore --assume-extension --disable_external      
 workflows:
   version: 2
   setup-build-package-and-deploy:
     jobs:
      - build   
      - test:
-        requires:
-          - build
