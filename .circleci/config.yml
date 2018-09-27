@@ -10,7 +10,9 @@ jobs:
           command: |
             apk add --update python python-dev py-pip build-base
             pip install awscli
-  build:  
+  build:
+    docker: 
+     - image: felicianotech/docker-hugo:0.47.1
     working_directory: /hugo
     environment: 
       HUGO_BUILD_DIR: /hugo/public
