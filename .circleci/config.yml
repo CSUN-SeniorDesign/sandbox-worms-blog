@@ -50,7 +50,7 @@ jobs:
             branches:
                 ignore: /pull\/.*/
           name: Tarball the public
-          command: tar -zcvf /hugo/${CIRCLE_SHA1}.tar.gz $HUGO_BUILD_DIR 
+          command: tar -zcvf /hugo/${CIRCLE_SHA1}.tar.gz -C $HUGO_BUILD_DIR . 
      - deploy:
           filters: 
             branches:
@@ -85,7 +85,7 @@ jobs:
             branches:
                 ignore: /pull\/.*/
           name: Tarball the public
-          command: tar -zcvf /hugo/${CIRCLE_SHA1}.tar.gz $HUGO_BUILD_DIR 
+          command: tar -zcvf /hugo/${CIRCLE_SHA1}.tar.gz -C $HUGO_BUILD_DIR .
      - deploy:
           filters: 
             branches:
