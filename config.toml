@@ -1,5 +1,5 @@
 title = "Sandbox Worms"
-baseURL = "https://www.sandboxworms.me/"
+baseURL = "https://sandboxworms.me/"
 theme = "bilberry-hugo-theme"
 
 enableRobotsTXT = true
