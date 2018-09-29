@@ -113,6 +113,9 @@ workflows:
           requires:
             - test
       - hold:
+          filters:
+            branches:
+              only: master
           type: approval
           requires: 
             - test
