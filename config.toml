@@ -1,7 +1,7 @@
 title = "Sandbox Worms"
-baseURL = "https://www.sandboxworms.me/"
+baseURL = ""
 theme = "bilberry-hugo-theme"
-
+relativeurls = true
 enableRobotsTXT = true
 
 # Change to one of your content languages definded at the end.
