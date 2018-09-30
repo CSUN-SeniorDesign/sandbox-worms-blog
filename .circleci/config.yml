@@ -96,7 +96,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" = "master" ]; then
               aws s3 cp /hugo/${CIRCLE_SHA1}.tar.gz \
               s3://sandboxworms-packages-92618/master/${CIRCLE_SHA1}.tar.gz && \
-              echo "${CIRCLE_SHA1}.tar.gz" > latestbuild.txt && aws s3 cp latestbuild.txt s3://sandboxworms-packages-92618/staging/latestbuild.txt
+              echo "${CIRCLE_SHA1}.tar.gz" > latestbuild.txt && aws s3 cp latestbuild.txt s3://sandboxworms-packages-92618/master/latestbuild.txt
             else
               echo "Not master branch, dry run only"
             fi
