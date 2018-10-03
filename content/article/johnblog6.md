@@ -15,30 +15,34 @@ After installing the packages for packer, we needed to specify the template file
 	}]
 
 Once installed on the VM, the ansible provisioner is able to run correctly but with the drawback of using only one playbook. Other ansible provisioners provide json arrays to accommodate multiple playbooks, however certain provisioners are meant to be implemented on a guest host, not the controller. 
-			"region": "us-east-1",
-			"source_ami_filter": {
-			"filters": {
-			"virtualization-type": "hvm",
-			"name": "/dev/sda1",
-			"root-device-type": "ebs"
-			},
-			"owners": ["309956199498"],
-			"most_recent": true
-			},  
-			"instance_type": "t2.micro",
-			"ssh_username": "ec2-user",
-			"ami_name": "packer-example {{timestamp}}",
-			"tags": {"name": "baseAMI"}
-		}],
+
+	"region": "us-east-1",
+	"source_ami_filter": {
+	"filters": {
+	"virtualization-type": "hvm",
+	"name": "/dev/sda1",
+	"root-device-type": "ebs"
+	},
+	"owners": ["309956199498"],
+	"most_recent": true
+	},  
+	"instance_type": "t2.micro",
+	"ssh_username": "ec2-user",
+	"ami_name": "packer-example {{timestamp}}",
+	"tags": {"name": "baseAMI"}
+	}],
+
 Other specifications made on the template include the AMI name and tags to provide further identification which can be used in terraform documents such as the autoscaling group.
 And lastly, the access keys had to be specified, as they were declared as variables in the template.
-		"variables": {
-			"aws_access_key": "",
-			"aws_secret_key": ""
-		},
+	
+	"variables": {
+		"aws_access_key": "",
+		"aws_secret_key": ""
+	},
 	"builders": [{
-			"type": "amazon-ebs",
-			"access_key": "{{user `aws_access_key`}}",
-			"secret_key": "{{user `aws_secret_key`}}",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		
 Rather than implementing a variables file, we can simply use the -var option when running the packer build command, which is a safer, more convenient alternative.
 
