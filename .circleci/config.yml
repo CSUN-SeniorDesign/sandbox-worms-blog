@@ -44,7 +44,7 @@ jobs:
             pip install awscli
      - run:
          name: "Run Hugo"
-         command: HUGO_ENV=production hugo -v -d --baseURL="http://staging.sandboxworms.me" $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
+         command: HUGO_ENV=production hugo -v -d  $HUGO_BUILD_DIR --baseURL="https://staging.sandboxworms.me" --enableGitInfo --verbose --debug
      - deploy:
           filters: 
             branches:
