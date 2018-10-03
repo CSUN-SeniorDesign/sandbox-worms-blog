@@ -12,3 +12,5 @@ author: "Aubrey Nigoza"
 Changing a file
 
 redepoloying site
+
+after setting up cron job
