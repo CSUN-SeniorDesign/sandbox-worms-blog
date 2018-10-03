@@ -14,3 +14,5 @@ Changing a file
 redepoloying site
 
 after setting up cron job
+
+after setting up output redirection
