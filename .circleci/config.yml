@@ -44,7 +44,7 @@ jobs:
             pip install awscli
      - run:
          name: "Run Hugo"
-         command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
+         command: HUGO_ENV=production hugo -v -d  $HUGO_BUILD_DIR --baseURL="https://staging.sandboxworms.me" --enableGitInfo --verbose --debug
      - deploy:
           filters: 
             branches:
@@ -59,7 +59,8 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" = "project2_staging" ]; then
               aws s3 cp /hugo/${CIRCLE_SHA1}.tar.gz \
-              s3://sandboxworms-packages-92618/staging/${CIRCLE_SHA1}.tar.gz
+              s3://sandboxworms-packages-92618/staging/${CIRCLE_SHA1}.tar.gz --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93 && \
+              echo "${CIRCLE_SHA1}.tar.gz" > latestbuild.txt && aws s3 cp latestbuild.txt s3://sandboxworms-packages-92618/staging/latestbuild.txt --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93
             else
               echo "Not master branch, dry run only"
             fi
@@ -94,7 +95,8 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" = "master" ]; then
               aws s3 cp /hugo/${CIRCLE_SHA1}.tar.gz \
-              s3://sandboxworms-packages-92618/master/${CIRCLE_SHA1}.tar.gz
+              s3://sandboxworms-packages-92618/master/${CIRCLE_SHA1}.tar.gz --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93 && \
+              echo "${CIRCLE_SHA1}.tar.gz" > latestbuild.txt && aws s3 cp latestbuild.txt s3://sandboxworms-packages-92618/master/latestbuild.txt --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93
             else
               echo "Not master branch, dry run only"
             fi
