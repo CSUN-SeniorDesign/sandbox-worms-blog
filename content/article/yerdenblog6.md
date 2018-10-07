@@ -1,6 +1,6 @@
 ---
 title: "Yerden's Blog 6"
-date: 2018-10-56T22:35:29-07:00
+date: 2018-10-05T22:35:29-07:00
 draft: false
 categories: [Project 2]
 author: "Yerden Zhursinbek"
