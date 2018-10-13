@@ -1,5 +1,5 @@
 ---
-title: "Troubleshooting Week7"
+title: "Troubleshooting Week8"
 date: 2018-10-18T17:14:29-07:00
 draft: false
 
