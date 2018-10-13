@@ -1,5 +1,5 @@
 title = "Sandbox Worms"
-baseURL = ""
+baseURL = "/"
 theme = "bilberry-hugo-theme"
 relativeurls = true
 enableRobotsTXT = true
@@ -15,7 +15,8 @@ disqusShortname = ""
 
 [params]
   # Favicon for the browser's favorites and tabs
-  favicon = "" # set a favicon icon
+  favicon = "" 
+  # set a favicon icon
 
   # Custom CSS / JS modules that will be imported by the template.
   # Files are relative to the static/ directory or a URL.
