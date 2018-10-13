@@ -12,12 +12,12 @@ Picked up where we left off last week except this time, using containers to auto
 Websites:
 	ECS - 
 	http://blog.shippable.com/setup-a-container-cluster-on-aws-with-terraform-part-2-provision-a-cluster
-	https://www.lynda.com/Docker-tutorials/Getting-started-ECS/606069/643352-4.html?srchtrk=index%3a2%0alinktypeid%3a2%0aq%3aaws+ecr%0apage%3a1%0as%3arelevance%0asa%3atrue%0aproducttypeid%3a2
+	https://www.lynda.com/Docker-tutorials/Getting-started-ECS/
 	https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create_cluster.html
 	https://www.terraform.io/docs/providers/aws/r/ecr_repository.html
 	https://linuxacademy.com/community/posts/show/topic/26403-terraform-object-expected-closing-rbrace-got-eof
 
 
 	Docker -
-	https://www.lynda.com/Docker-tutorials/Docker-Toolbox/721901/779040-4.html?srchtrk=index%253a1%0alinktypeid%253a2%0aq%253adocker%0apage%253a1%0as%253arelevance%0asa%253atrue%0aproducttypeid%253a2
+	https://www.lynda.com/Docker-tutorials/Docker-Toolbox/
 	https://docs.docker.com/install/linux/docker-ce/ubuntu/#supported-storage-drivers
