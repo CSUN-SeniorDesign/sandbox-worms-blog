@@ -3,6 +3,6 @@ version: 2
 jobs:
   build:
     docker: 
-     - image: aubreycsun/project3 :1.0
+     - image: aubreycsun/project3:1.0
     steps:
      - checkout
