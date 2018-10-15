@@ -1,6 +1,8 @@
 #FROM alpine:3.8
 FROM httpd:2.4.35-alpine
+ARG git_sha
 ARG git_branch
+ENV GIT_SHA1=$git_sha
 ENV ENV_BRANCH=$git_branch
 ENV HUGO_VERSION 0.49
 ENV HUGO_BINARY hugo_extended_${HUGO_VERSION}_Linux-64bit 
@@ -43,8 +45,11 @@ RUN mkdir /hugo/ && \
     cd /hugo && \
     git fetch --force origin ${ENV_BRANCH}:remotes/origin/${ENV_BRANCH} && \
     git remote show origin && \
+    git reset --hard $GIT_SHA1 && \
     git checkout -B ${ENV_BRANCH} && \
+    git reset --hard $GIT_SHA1 && \
     git branch
+    #ls /hugo/content/article
   
 
 

@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Build image
           command: |
-            docker build --build-arg git_branch=$CIRCLE_BRANCH -t $FULL_IMAGE_NAME -f docker/Dockerfile .
+            docker build --build-arg git_branch=$CIRCLE_BRANCH --build-arg git_sha=$CIRCLE_SHA1 -t $FULL_IMAGE_NAME -f docker/Dockerfile .
 #      - run:
 #          name: Save image to an archive
 #          command: |
