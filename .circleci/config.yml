@@ -6,7 +6,7 @@ jobs:
      - image: aubreycsun/project3:1.0
     environment: 
       AWS_RESOURCE_NAME_PREFIX: sandboxworms
-      AWS_ACCOUNT_ID: 429784283093
+      AWS_ACCOUNT_ID: "429784283093"
       AWS_DEFAULT_REGION: us-east-1
     steps:
       - checkout
