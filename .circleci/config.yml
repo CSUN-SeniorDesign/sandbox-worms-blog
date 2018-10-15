@@ -2,15 +2,15 @@
 version: 2
 jobs:
   build:
-    machine: 
-      image: circleci/classic:201808-01
+    docker: 
+     - image: circleci/python:3
     environment: 
       AWS_RESOURCE_NAME_PREFIX: sandboxworms
       AWS_ACCOUNT_ID: "429784283093"
       AWS_DEFAULT_REGION: us-east-1
     steps:
       - checkout
-#      - setup_remote_docker
+      - setup_remote_docker
 #     - run:
 #         name: Install Docker client
 #          command: |
@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Build image
           command: |
-            docker build -t $FULL_IMAGE_NAME -f docker/Dockerfile .
+            docker build --build-arg git_branch=$CIRCLE_BRANCH -t $FULL_IMAGE_NAME -f docker/Dockerfile .
 #      - run:
 #          name: Save image to an archive
 #          command: |

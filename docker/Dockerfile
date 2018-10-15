@@ -1,5 +1,7 @@
 #FROM alpine:3.8
 FROM httpd:2.4.35-alpine
+ARG git_branch
+ENV ENV_BRANCH=$git_branch
 ENV HUGO_VERSION 0.49
 ENV HUGO_BINARY hugo_extended_${HUGO_VERSION}_Linux-64bit 
 ENV HUGO_BUILD_DIR /hugo/public
@@ -33,12 +35,13 @@ RUN ls && \
     rm ${HUGO_BINARY}.tar.gz LICENSE README.md && \
     rm -rf /tmp/* /var/cache/apk/*
 
-#replacing for cicleci buid
-#RUN mkdir /hugo/ && \
-#    git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git /hugo/
+RUN mkdir /hugo/ && \
+    git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git /hugo/ && \
+    git fetch --force origin "${ENV_BRANCH}:remotes/origin/${ENV_BRANCH}" && \
+    git checkout -q -B "${ENV_BRANCH}"
 
 #replacing for circleci build
-#RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ -d  ${HUGO_BUILD_DIR} --enableGitInfo --verbose --debug
+RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ -d  ${HUGO_BUILD_DIR} --enableGitInfo --verbose --debug
 RUN ls && \
     pwd && \
     hugo -F -v --config $CIRCLE_WORKING_DIRECTORY/config.toml -s $CIRCLE_WORKING_DIRECTORY --enableGitInfo --verbose --debug
