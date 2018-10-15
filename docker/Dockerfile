@@ -29,13 +29,15 @@ RUN wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hug
     rm ${HUGO_BINARY}.tar.gz LICENSE README.md && \
     rm -rf /tmp/* /var/cache/apk/*
 
-RUN mkdir /hugo/ && \
-    git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git /hugo/
+#replacing for cicleci buid
+#RUN mkdir /hugo/ && \
+#    git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git /hugo/
 
-RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ -d  ${HUGO_BUILD_DIR} --enableGitInfo --verbose --debug
-
+#replacing for circleci build
+#RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ -d  ${HUGO_BUILD_DIR} --enableGitInfo --verbose --debug
+RUN hugo --enableGitInfo --verbose --debug
 #use rsync to copy static html files. 
-RUN rsync -r ${HUGO_BUILD_DIR}/ ${DOCROOT} 
+RUN rsync -r public/ ${DOCROOT} 
 #RUN sed -i 's/^#ServerName.*/ServerName localhost/' /etc/apache2/httpd.conf 
 COPY docker/vhosts.conf /etc/apache2/conf.d/vhosts.conf
 #CMD [ "/usr/sbin/httpd", "-D", "FOREGROUND", "-f", "/etc/apache2/conf.d/vhosts.conf" ]
