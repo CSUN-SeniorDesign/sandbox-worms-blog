@@ -7,7 +7,9 @@ ENV HUGO_SRC /hugo
 ENV DOCROOT /usr/local/apache2/htdocs/
 #ENV HTTPD_PREFIX /usr/local/apache2
 #ENV PATH $HTTPD_PREFIX/bin:$PATH
-RUN apk add --no-cache git=2.18.0-r0 \
+RUN ls && \
+    pwd && \
+    apk add --no-cache git=2.18.0-r0 \
 		bash \
 		build-base \
 		ca-certificates \
@@ -23,7 +25,9 @@ RUN apk add --no-cache git=2.18.0-r0 \
     rsync && \
     apk add --update ca-certificates bash curl wget && \
     apk upgrade
-RUN wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz && \
+RUN ls && \
+    pwd && \
+    wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz && \
     tar xzf ${HUGO_BINARY}.tar.gz && \
     mv hugo /usr/bin/hugo && \
     rm ${HUGO_BINARY}.tar.gz LICENSE README.md && \
