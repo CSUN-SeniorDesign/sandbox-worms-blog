@@ -1,0 +1,129 @@
+---
+version: 2
+jobs:
+  build:
+    docker: 
+     - image: felicianotech/docker-hugo:0.47.1
+    working_directory: /hugo
+    environment: 
+      HUGO_BUILD_DIR: /hugo/public
+    steps:
+     - checkout
+     - run:
+         name: "Run Hugo"
+         command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
+  test:
+    docker: 
+     - image: felicianotech/docker-hugo:0.47.1
+    working_directory: /hugo
+    environment: 
+      HUGO_BUILD_DIR: /hugo/public
+    steps:
+     - checkout
+     - run:
+         name: "Run Hugo"
+         command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
+     - run:
+          name: Test Hugo Build Static HTML
+          command: |
+            htmlproofer $HUGO_BUILD_DIR --allow-hash-href --check-html \
+             --empty-alt-ignore --assume-extension --disable_external      
+  deploystaging:
+    docker: 
+     - image: felicianotech/docker-hugo:0.47.1
+    working_directory: /hugo
+    parallelism: 3
+    environment: 
+      HUGO_BUILD_DIR: /hugo/public
+    steps:
+     - checkout
+     - run:
+          name: Install AWS CLI 
+          command: |
+            apk add --update python python-dev py-pip build-base
+            pip install awscli
+     - run:
+         name: "Run Hugo"
+         command: HUGO_ENV=production hugo -v -d  $HUGO_BUILD_DIR --baseURL="https://staging.sandboxworms.me" --enableGitInfo --verbose --debug
+     - deploy:
+          filters: 
+            branches:
+                ignore: /pull\/.*/
+          name: Tarball the public
+          command: tar -zcvf /hugo/${CIRCLE_SHA1}.tar.gz -C $HUGO_BUILD_DIR . 
+     - deploy:
+          filters: 
+            branches:
+                ignore: /pull\/.*/
+          name: deploy to AWS
+          command: |
+            if [ "${CIRCLE_BRANCH}" = "project2_staging" ]; then
+              aws s3 cp /hugo/${CIRCLE_SHA1}.tar.gz \
+              s3://sandboxworms-packages-92618/staging/${CIRCLE_SHA1}.tar.gz --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93 && \
+              echo "${CIRCLE_SHA1}.tar.gz" > latestbuild.txt && aws s3 cp latestbuild.txt s3://sandboxworms-packages-92618/staging/latestbuild.txt --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93
+            else
+              echo "Not master branch, dry run only"
+            fi
+  deploymaster:
+    docker: 
+     - image: felicianotech/docker-hugo:0.47.1
+    working_directory: /hugo
+    parallelism: 3
+    environment: 
+      HUGO_BUILD_DIR: /hugo/public
+    steps:
+     - checkout
+     - run:
+          name: Install AWS CLI 
+          command: |
+            apk add --update python python-dev py-pip build-base
+            pip install awscli
+     - run:
+         name: "Run Hugo"
+         command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
+     - deploy:
+          filters: 
+            branches:
+                ignore: /pull\/.*/
+          name: Tarball the public
+          command: tar -zcvf /hugo/${CIRCLE_SHA1}.tar.gz -C $HUGO_BUILD_DIR .
+     - deploy:
+          filters: 
+            branches:
+                ignore: /pull\/.*/
+          name: deploy to AWS
+          command: |
+            if [ "${CIRCLE_BRANCH}" = "master" ]; then
+              aws s3 cp /hugo/${CIRCLE_SHA1}.tar.gz \
+              s3://sandboxworms-packages-92618/master/${CIRCLE_SHA1}.tar.gz --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93 && \
+              echo "${CIRCLE_SHA1}.tar.gz" > latestbuild.txt && aws s3 cp latestbuild.txt s3://sandboxworms-packages-92618/master/latestbuild.txt --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93
+            else
+              echo "Not master branch, dry run only"
+            fi
+workflows:
+  version: 2
+  setup-build-package-and-deploy:
+    jobs:
+      - build
+      - test: #useful if there are multiple tests, so we can run them together
+          requires:
+            - build
+      - deploystaging:
+          filters:
+            branches:
+              only: project2_staging
+          requires:
+            - test
+      - hold:
+          filters:
+            branches:
+              only: master
+          type: approval
+          requires: 
+            - test
+      - deploymaster:
+          filters:
+            branches:
+              only: master
+          requires:
+            - hold
