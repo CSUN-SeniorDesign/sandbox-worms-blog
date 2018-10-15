@@ -41,8 +41,8 @@ RUN mkdir /hugo/ && \
     git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git /hugo/ && \
     ls /hugo && \
     cd /hugo && \
-    git fetch --force origin "${ENV_BRANCH}:remotes/origin/${ENV_BRANCH}" && \
-    git checkout -q -B "${ENV_BRANCH}"
+    git fetch --force origin ${ENV_BRANCH}:remotes/origin/${ENV_BRANCH} && \
+    git checkout -q -B ${ENV_BRANCH}
 
 
 RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ -d  ${HUGO_BUILD_DIR} --enableGitInfo --verbose --debug
