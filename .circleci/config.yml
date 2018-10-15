@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     machine: 
-     - image: circleci/python:3
+     - image: circleci/classic:201808-01
     environment: 
       AWS_RESOURCE_NAME_PREFIX: sandboxworms
       AWS_ACCOUNT_ID: "429784283093"
