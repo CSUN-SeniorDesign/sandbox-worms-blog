@@ -9,13 +9,13 @@ jobs:
       AWS_ACCOUNT_ID: 429784283093
       AWS_DEFAULT_REGION: us-east-1
     steps:
-     - checkout
-     - setup_remote_docker
-     - run:
-        name: Create HTML Files
-        command: |
-          echo 'export ECR_REPOSITORY_NAME="${AWS_RESOURCE_NAME_PREFIX}"' >> $BASH_ENV
-          echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPOSITORY_NAME}:${CIRCLE_SHA1}"' >> $BASH_ENV
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Create HTML Files
+          command: |
+            echo 'export ECR_REPOSITORY_NAME="${AWS_RESOURCE_NAME_PREFIX}"' >> $BASH_ENV
+            echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPOSITORY_NAME}:${CIRCLE_SHA1}"' >> $BASH_ENV
       - run:
           name: Build image
           command: |
@@ -25,7 +25,7 @@ jobs:
           command: |
             mkdir docker-image
             docker save -o docker-image/image.tar $FULL_IMAGE_NAME
-        - run:
+      - run:
           name: Save image to an archive
           command: |
             mkdir docker-image
