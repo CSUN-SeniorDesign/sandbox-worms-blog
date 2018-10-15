@@ -36,6 +36,8 @@ RUN ls && \
     rm -rf /tmp/* /var/cache/apk/*
 
 RUN mkdir /hugo/ && \
+    mkdir /${ENV_BRANCH}/ && \
+    ls / && \
     git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git /hugo/ && \
     git fetch --force origin "${ENV_BRANCH}:remotes/origin/${ENV_BRANCH}" && \
     git checkout -q -B "${ENV_BRANCH}"
