@@ -2,7 +2,7 @@
 version: 2
 jobs:
   build:
-    docker: 
+    machine: 
      - image: circleci/python:3
     environment: 
       AWS_RESOURCE_NAME_PREFIX: sandboxworms
