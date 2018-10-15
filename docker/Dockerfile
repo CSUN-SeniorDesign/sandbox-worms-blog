@@ -42,6 +42,7 @@ RUN mkdir /hugo/ && \
     ls /hugo && \
     cd /hugo && \
     git fetch --force origin ${ENV_BRANCH}:remotes/origin/${ENV_BRANCH} && \
+    git remote show origin && \
     git checkout -B ${ENV_BRANCH} $$ \
     git branch && \
     ls /hugo/content/article
