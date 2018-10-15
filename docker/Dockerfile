@@ -35,7 +35,9 @@ RUN wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hug
 
 #replacing for circleci build
 #RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ -d  ${HUGO_BUILD_DIR} --enableGitInfo --verbose --debug
-RUN hugo -F -v --config $CIRCLE_WORKING_DIRECTORY/config.toml -s $CIRCLE_WORKING_DIRECTORY --enableGitInfo --verbose --debug
+RUN ls && \
+    pwd && \
+    hugo -F -v --config $CIRCLE_WORKING_DIRECTORY/config.toml -s $CIRCLE_WORKING_DIRECTORY --enableGitInfo --verbose --debug
 #use rsync to copy static html files. 
 RUN rsync -r $CIRCLE_WORKING_DIRECTORY/public/ ${DOCROOT} 
 #RUN sed -i 's/^#ServerName.*/ServerName localhost/' /etc/apache2/httpd.conf 
