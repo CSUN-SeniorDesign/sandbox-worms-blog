@@ -44,8 +44,7 @@ RUN mkdir /hugo/ && \
     git fetch --force origin ${ENV_BRANCH}:remotes/origin/${ENV_BRANCH} && \
     git remote show origin && \
     git checkout -B ${ENV_BRANCH} $$ \
-    git branch && \
-    ls /hugo/content/article
+    git branch
 
 
 RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ -d  ${HUGO_BUILD_DIR} --enableGitInfo --verbose --debug
