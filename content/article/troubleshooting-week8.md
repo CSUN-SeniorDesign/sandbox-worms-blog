@@ -58,3 +58,7 @@ The problem was we were defining a container_name in my service that doesn't exi
     }
 
 In our case, we didn't have a name at all in your aws_ecs_task_definition of the container_definitions.
+
+
+
+--more stuff to follow
