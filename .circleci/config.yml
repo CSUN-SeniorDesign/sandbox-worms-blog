@@ -22,7 +22,7 @@ jobs:
       - run: 
           name: Install awscli
           command: |
-          sudo pip install awscli
+            sudo pip install awscli
       - run:
           name: Export repository env
           command: |
