@@ -37,7 +37,7 @@ RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ -d  ${HUGO_BUILD
 #use rsync to copy static html files. 
 RUN rsync -r ${HUGO_BUILD_DIR}/ ${DOCROOT} 
 #RUN sed -i 's/^#ServerName.*/ServerName localhost/' /etc/apache2/httpd.conf 
-COPY vhosts.conf /etc/apache2/conf.d/vhosts.conf
+COPY docker/vhosts.conf /etc/apache2/conf.d/vhosts.conf
 #CMD [ "/usr/sbin/httpd", "-D", "FOREGROUND", "-f", "/etc/apache2/conf.d/vhosts.conf" ]
 #CMD [ "/usr/sbin/httpd", "-D", "FOREGROUND", "-f", "/etc/apache2/httpd.conf" ]
 #EXPOSE 80
