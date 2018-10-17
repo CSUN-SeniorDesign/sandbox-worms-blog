@@ -50,8 +50,9 @@ jobs:
       AWS_ACCOUNT_ID: "429784283093"
       AWS_DEFAULT_REGION: us-east-1
     steps:
+      - setup_remote_docker
       - attach_workspace:
-          at: /docker-image
+          at: .
       - run:
           name: load archived image
           command: |
@@ -73,8 +74,9 @@ jobs:
       AWS_ACCOUNT_ID: "429784283093"
       AWS_DEFAULT_REGION: us-east-1
     steps:
+      - setup_remote_docker
       - attach_workspace:
-          at: /docker-image
+          at: .
       - run:
           name: load archived image
           command: |
