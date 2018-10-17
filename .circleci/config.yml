@@ -101,10 +101,14 @@ workflows:
           filters:
             branches:
               only: staging
+          requires:
+            - build
       - hold:
           filters:
             branches:
               only: master
+          requires:
+            - build
           type: approval
       - deploymaster:
           filters:
