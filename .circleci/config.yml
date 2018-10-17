@@ -44,7 +44,7 @@ jobs:
             - docker-image
   deploystaging:
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: circleci/python:3
     environment: 
       AWS_RESOURCE_NAME_PREFIX: sandboxworms
       AWS_ACCOUNT_ID: "429784283093"
@@ -72,7 +72,7 @@ jobs:
               echo "$CIRCLE_SHA1" > stagebuild.txt && aws s3 cp stagebuild.txt s3://sandboxworms-packages-92618/staging/stagebuild.txt --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93
   deploymaster:
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: circleci/python:3
     environment: 
       AWS_RESOURCE_NAME_PREFIX: sandboxworms
       AWS_ACCOUNT_ID: "429784283093"
