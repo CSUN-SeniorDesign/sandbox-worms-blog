@@ -1,5 +1,6 @@
 #FROM alpine:3.8
 FROM httpd:2.4.35-alpine
+
 ARG git_sha
 ARG git_branch
 ENV GIT_SHA1=$git_sha
@@ -14,6 +15,7 @@ ENV DOCROOT /usr/local/apache2/htdocs/
 RUN ls && \
     pwd && \
     apk add --no-cache git=2.18.0-r0 \
+
 		bash \
 		build-base \
 		ca-certificates \
@@ -29,6 +31,7 @@ RUN ls && \
     rsync && \
     apk add --update ca-certificates bash curl wget && \
     apk upgrade
+
 RUN ls && \
     pwd && \
     wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz && \
@@ -38,6 +41,7 @@ RUN ls && \
     rm -rf /tmp/* /var/cache/apk/*
 
 RUN mkdir /hugo/ && \
+
     mkdir /${ENV_BRANCH}/ && \
     ls / && \
     git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git /hugo/ && \
@@ -50,13 +54,14 @@ RUN mkdir /hugo/ && \
     git reset --hard $GIT_SHA1 && \
     git branch
     #ls /hugo/content/article
-  
 
 
 RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ -d  ${HUGO_BUILD_DIR} --enableGitInfo --verbose --debug
 
 #use rsync to copy static html files. 
+
 RUN rsync -r ${HUGO_SRC}/public/ ${DOCROOT} 
+
 #RUN sed -i 's/^#ServerName.*/ServerName localhost/' /etc/apache2/httpd.conf 
 COPY docker/vhosts.conf /etc/apache2/conf.d/vhosts.conf
 #CMD [ "/usr/sbin/httpd", "-D", "FOREGROUND", "-f", "/etc/apache2/conf.d/vhosts.conf" ]
