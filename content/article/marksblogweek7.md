@@ -7,9 +7,9 @@ Tags: []
 Author: "Mark Siegmund"
 ---
 
-Marks Blog Week 7								October 12, 2018
+Marks Blog Week 7, 								October 12, 2018
 
-Working on Project 3 this week.
+Working on Project 3 this week.   
 Working on Docker this week.
 I started by building a docker container using an Alpine.  First downloading an alpine image with the pull command or run command.  The easy way is to type
 docker run alpine -it /bin/sh
