@@ -61,4 +61,9 @@ In our case, we didn't have a name at all in your aws_ecs_task_definition of the
 
 
 
---more stuff to follow
+
+--more stuff to follow: nnow using john's policy
+
+-- this is staging container only
+-- testing lambda function. booyah
+--it is working. now added trigger on s3
