@@ -62,6 +62,11 @@ jobs:
           command: |
             sudo pip install awscli
       - run:
+          name: Export repository env
+          command: |
+            echo 'export ECR_REPOSITORY_NAME="${AWS_RESOURCE_NAME_PREFIX}"' >> $BASH_ENV
+            echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPOSITORY_NAME}:${CIRCLE_SHA1}"' >> $BASH_ENV
+      - run:
           name: push image to ecr
           command: |
             eval "$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)"
@@ -89,6 +94,11 @@ jobs:
           name: Install awscli
           command: |
             sudo pip install awscli
+      - run:
+          name: Export repository env
+          command: |
+            echo 'export ECR_REPOSITORY_NAME="${AWS_RESOURCE_NAME_PREFIX}"' >> $BASH_ENV
+            echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPOSITORY_NAME}:${CIRCLE_SHA1}"' >> $BASH_ENV
       - run:
           name: push image to ecr
           command: |
