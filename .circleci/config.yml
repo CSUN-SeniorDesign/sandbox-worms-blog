@@ -32,26 +32,83 @@ jobs:
           name: Build image
           command: |
             docker build --build-arg git_branch=$CIRCLE_BRANCH --build-arg git_sha=$CIRCLE_SHA1 -t $FULL_IMAGE_NAME -f docker/Dockerfile .
-#      - run:
-#          name: Save image to an archive
-#          command: |
-#            mkdir docker-image
-#            docker save -o docker-image/image.tar $FULL_IMAGE_NAME
+      - run:
+          name: Save image to an archive
+          command: |
+            mkdir docker-image
+            docker save -o docker-image/image.tar $FULL_IMAGE_NAME
 
-#      - persist_to_workspace:
-#          root: .
-#          paths:
-#            - docker-image
+      - persist_to_workspace:
+          root: .
+          paths:
+            - docker-image
+  deploystaging:
+    docker:
+      - image: docker:17.05.0-ce-git
+    environment: 
+      AWS_RESOURCE_NAME_PREFIX: sandboxworms
+      AWS_ACCOUNT_ID: "429784283093"
+      AWS_DEFAULT_REGION: us-east-1
+    steps:
+      - attach_workspace:
+          at: /docker-image
+      - run:
+          name: load archived image
+          command: |
+            docker load -i docker-image/image.tar
       - run:
           name: push image to ecr
           command: |
             eval "$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)"
             docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPOSITORY_NAME:$CIRCLE_SHA1
       - run:
-          name: Tag stage and prod on S3
+          name: Tag stage S3
           command: |
-            if [ "$CIRCLE_BRANCH" = "master" ]; then
-              echo "$CIRCLE_SHA1" > prodbuild.txt && aws s3 cp prodbuild.txt s3://sandboxworms-packages-92618/master/prodbuild.txt --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93
-            else
               echo "$CIRCLE_SHA1" > stagebuild.txt && aws s3 cp stagebuild.txt s3://sandboxworms-packages-92618/staging/stagebuild.txt --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93
-            fi
+  deploymaster:
+    docker:
+      - image: docker:17.05.0-ce-git
+    environment: 
+      AWS_RESOURCE_NAME_PREFIX: sandboxworms
+      AWS_ACCOUNT_ID: "429784283093"
+      AWS_DEFAULT_REGION: us-east-1
+    steps:
+      - attach_workspace:
+          at: /docker-image
+      - run:
+          name: load archived image
+          command: |
+            docker load -i docker-image/image.tar
+      - run:
+          name: push image to ecr
+          command: |
+            eval "$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)"
+            docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPOSITORY_NAME:$CIRCLE_SHA1
+      - run:
+          name: Tag stage S3
+          command: |  
+              echo "$CIRCLE_SHA1" > prodbuild.txt && aws s3 cp prodbuild.txt s3://sandboxworms-packages-92618/master/prodbuild.txt --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93
+
+workflows:
+  version: 2
+  setup-build-package-and-deploy:
+    jobs:
+      - build
+#      - test: #add mocha test later
+#          requires:
+#            - build
+      - deploystaging:
+          filters:
+            branches:
+              only: staging
+      - hold:
+          filters:
+            branches:
+              only: master
+          type: approval
+      - deploymaster:
+          filters:
+            branches:
+              only: master
+          requires:
+            - hold
