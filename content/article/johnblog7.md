@@ -2,7 +2,7 @@
 title: "John's Blog 7"
 date: 2018-10-11T16:53:55-07:00
 draft: false
-Categories: [Project 2]
+Categories: [Project 3]
 Tags: []
 Author: "John Vinuya"
 ---
