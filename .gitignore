@@ -1,9 +1,5 @@
 /public
 
-#old config
-config.old
-config_p3.yml
-
 mix-manifest.json
 # Created by https://www.gitignore.io/api/node,sass,linux,macos,sublimetext
 
