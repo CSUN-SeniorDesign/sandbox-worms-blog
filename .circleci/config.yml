@@ -17,4 +17,4 @@ jobs:
           command: |
             apk add --update python python-dev py-pip build-base
             pip install awscli
-            aws s3 sync /hugo/public s3://sandboxworms-proj5-102018
+            aws s3 sync /hugo/public s3://sandboxworms-proj5-102018 
