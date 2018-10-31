@@ -142,4 +142,8 @@ bh_unicode_properties.cache
 # https://packagecontrol.io/packages/sublime-github
 GitHub.sublime-settings
 
+#old config
+config.old
+config_p3.yml
+
 # End of https://www.gitignore.io/api/node,sass,linux,macos,sublimetext
