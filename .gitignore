@@ -1,5 +1,9 @@
 /public
 
+#old config
+config.old
+config_p3.yml
+
 mix-manifest.json
 # Created by https://www.gitignore.io/api/node,sass,linux,macos,sublimetext
 
@@ -141,9 +145,5 @@ bh_unicode_properties.cache
 # Sublime-github package stores a github token in this file
 # https://packagecontrol.io/packages/sublime-github
 GitHub.sublime-settings
-
-#old config
-config.old
-config_p3.yml
 
 # End of https://www.gitignore.io/api/node,sass,linux,macos,sublimetext
