@@ -17,4 +17,4 @@ jobs:
           command: |
             apk add --update python python-dev py-pip build-base
             pip install awscli
-            aws s3 sync s3://sandboxworms-proj5-102018 --sse=aws:kms --sse-kms-key-id ec0a605d-17e9-4ac8-a2e3-e299c1ee1a93   
+            aws s3 sync s3://sandboxworms-proj5-102018   
