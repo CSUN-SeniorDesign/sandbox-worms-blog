@@ -11,4 +11,4 @@ jobs:
      - checkout
      - run:
         name: "Run Hugo"
-         command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
+        command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
