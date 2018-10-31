@@ -12,3 +12,8 @@ jobs:
      - run:
         name: "Run Hugo"
         command: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR --enableGitInfo --verbose --debug
+     - run:
+          name: Install AWS CLI 
+          command: |
+            apk add --update python python-dev py-pip build-base
+            pip install awscli   
