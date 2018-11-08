@@ -1,5 +1,5 @@
 ---
-title: "Johnblog11"
+title: "John's Blog 11"
 date: 2018-11-08T11:21:47-08:00
 draft: false
 Categories: [Advancing Tech Lab]
