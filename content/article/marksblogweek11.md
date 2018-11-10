@@ -23,4 +23,4 @@ I found It is running on both firewall A and B.  This makes sense because there 
 
 I have made a VM running Ubuntu 16.04.  I now have bind installed and will start setting up the named.conf. The main idea for next week is to duplicate the services on the current systems Firewall A and B.
 
-I spoke with Professor Weigley and he has just received 2 replacement machines for firewall A and B.  The hardware for both machines is identical.  The old machines are not identical.  When we have the new systems looking correct we will bring down the old systems.
+I spoke with Professor Weigley and he has just received 2 replacement machines for firewall A and B.  The hardware for both machines is identical.  The old machines are not identical.  When we have the new systems looking correct we will bring down the old systems..
