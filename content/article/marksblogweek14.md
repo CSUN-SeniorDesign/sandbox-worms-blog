@@ -18,7 +18,7 @@ There are 4 networks
 10.47.x.x/16        (firewalled)
 10.1.47.x/24        (Firewalled - heartbeat)
 
-There are 2 racks. one on the left hand side and the other is on the right hand side.
+There are 2 racks. One on the left hand side and the other is on the right hand side.
 HP L1a  (10.47.0.11)             HP R1a  (10.47.0.12)
 HP L2a  (10.47.0.13)             HP R2a  (10.47.0.14)
 HP L3a  (10.47.0.15)             HP R3a  (10.47.0.16)
