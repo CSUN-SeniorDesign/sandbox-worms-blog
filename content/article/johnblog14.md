@@ -19,4 +19,4 @@ Despite our lack of meetings, we have been able to work on individual cataloguin
 	...
 	
 We noticed the ip address originally entered was /24, which caused the range to contain 253 addresses rather than the larger amount from the /26 address. Further investigation in the netplan file/directory also showed different IPs for the same interface with the default ip not listed using 'ifconfig'. This issue is also something that we may need the professor to address before fixing.
-We also researched different failover alternatives which include Maas, which provides bare-metal provisioning, PXE for network booting, and development of a script for checking running services on remote machines.
+We also researched different failover alternatives which include Maas, which provides bare-metal provisioning, PXE for network booting, and development of a script for checking running services on remote machines. We plan to start physical installation of the new servers to run in parallel next week.
