@@ -1,0 +1,13 @@
+---
+title: "John's Blog 17"
+date: 2019-02-01T11:35:33-08:00
+draft: false
+Categories: [Comp 481]
+Tags: ["John Philip Vinuya", "Sandbox Worms"]
+Author: "John Vinuya"
+---
+After researching the Ubuntu setup for DHCP and DNS, I had rechecked the networking items on the AdvancingTech document and copied over the zone and hosts files to try to replicate the additional DNS server listed in the document. While searching for the files, I noticed a folder in the home directory called "backup" that contained some copies of the files required for DHCP, perl scripts, and 3 Excel files cataloguing hardware and IP information. Prior to the discovery of these spreadsheets, we had no criteria besides the IP tables and nmap to take inventory of each machine. In addition of the zone files I copied over, I pushed the spreadsheets to the Documentation directory in Gitlab for others to look over.
+Chief among the things accomplished this week was the physical installation of the new motherboard to the yet-to-be installed server. Other team members had been able to work on the installation, so I had been able to physically install it under their guidance. I've had little experience in handling hardware on this level so it was fun to be able to poke around the server and learn how to handle the components. 
+After closing it, we then moved on to RAID configuration, where we checked the 1+0 configuration by unchecking one of the three drives to create a spare. After saving the configuration, we attempted to boot from USB with Ubuntu 18.04 LTS and tried to address a previous issue where ethernet port 0 was unable to ping anything. Bafflingly enough, the issue had persisted despite changing motherboards and a clean installation; however upon testing other ethernet ports, we were able to normally ping other hosts so the problem lied exclusively with eth0.
+To troubleshoot this, we switched over to the other server with Ubuntu 18.10 installed and performed the same ethernet port tests and received no issues. We then rebooted and installed 18.04 from the same stick and attempted the same tests again and, while we were able to ping from all ports, we expected that the problem lay with the network configuration.
+After some deliberation, we decided to install 18.10 on both servers to avoid the ethernet port issue. We also were able to apply more thermal paste to both servers' CPUs and set the ILO login according to the sticker documentation on the server before taking them to the rack. 
