@@ -40,10 +40,16 @@ sleep 30
 I just found this and need to test it out over this weekend.
 
 
+<<<<<<< HEAD
 
 
 There is simply no way that we can complete the migration to the new servers this week.  
 Files for DNS, DHCP and firewall can be copied over to the new servers and are in our home/ect dir.  The network configuration for Eth0 and Eth3 NICs are not done.  I was thinking that we need to have 2 ports turned on by campus IT for the front end connections to the campus network but just thinking about it we only need to take the 2 connections from the old server and move it to the new server.  We could do this also on the heartbeat network (Eth3).
 Maybe we could try this after the presentation on Monday.  If not then this same week.
+=======
+There is simply no way that we can complete the migration to the new servers this week but we can get it ready  for early next week.  
+Files for DNS, DHCP and firewall can be copied over to the new servers and are in our home/ect dir.  The network configuration for Eth0 and Eth3 NICs are not done.  I was thinking that we need to have 2 ports turned on by campus IT for the front end connections to the campus network but just thinking about it we only need to take the 2 connections from the old server and move it to the new server.  We could do this also on the heartbeat network (Eth3).
+Maybe we could try this after the presentation on Monday.  If not then sometime this same week.
+>>>>>>> b6fd02671baf2ccde8e4f9f51b811377e580ef01
 
  On Thursday (yesterday) Jeff came and talked to our group.  All the guys talked to him about different things they needed.  It was very good to see this.  Jeff talked about the VPN server that  was used to get to the iLo ports.  This needs to be check out and tested.  This is going to be done this week end.  This will be the first time I have had to generate a certificate on my own initiative. 
