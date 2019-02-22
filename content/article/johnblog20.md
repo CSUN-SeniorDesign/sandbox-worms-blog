@@ -1,0 +1,10 @@
+---
+title: "Johnblog20"
+date: 2019-02-21T16:10:00-08:00
+draft: false
+Categories: [Comp 481]
+Tags: ["John Philip Vinuya", "Sandbox Worms"]
+Author: "John Vinuya"
+---
+An issue from last week we failed to address was the fact that the 2 new firewalls were actually installed in the wrong rack (new A was in old B's rack and vice versa). Upon realizing this, we did label them in advance but we didn't make the full switch last week. On Thursday, we finished the physical switch and placed the new firewalls in their appropriate racks. Upon testing/ssh-ing into the new firewalls, we found that the network cables were actually set up appropriately without the need for us to label each port before disconnecting them. For automation, we were also able to get scripts that can be run as a cronjob which provides versioning for the ip rules, DHCP, and DNS. There is also the option to have a job push these versions to an online repository and even incorporate AWS S3 bucket storage, but that remains to be discussed.
+Another issue we ran into was being able to ssh into the ILO for each of the new and old firewalls. Interestingly enough, to properly ssh into the ILO from the old firewalls, the command needed is `ssh -oHostKeyAlgorithms=+ssh-dss Administrator@10.xx.xxx.xx` but to ssh from the old firewall to the new firewall's ILO, an option must be added to the beginning of that to force a cipher to be used- `-c aes256-cbc -o...`. Unfortunately the ssh-ing from the new firewalls to the old requires the forcing of a deprecated algorithm `diffie-hellman-group1-sha1` which, upon entering the command `ssh -c aes128-cbc -oKexAlgorithms=+diffie-hellman-group1-sha1 Administrator@10.xx.xxx.xx` which specifies both the encryption and the algorithm, disconnects you automatically from ILO; further research is warranted but for now we concluded that leaving one of the old servers up to provide ILO access is a short-term solution. I will also be working on documentation for accessing ILO, if the occasion arises where a team needed ILO access.
