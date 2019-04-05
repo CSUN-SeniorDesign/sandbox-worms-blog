@@ -1,0 +1,9 @@
+---
+title: "Johnblog25"
+date: 2019-04-04T18:00:17-07:00
+draft: false
+Categories: [Comp 481]
+Tags: ["John Philip Vinuya", "Sandbox Worms"]
+Author: "John Vinuya"
+---
+After successfully changing the interfaces to the new IPs in the new firewalls, there seems to be an IP conflict going on specifically with old A, fwa. Currently it is reachable through the .21 the IP set in netplan, occasionally .19 will connect you to old A, which will usually prompt you about a change in the RSA key, and .18 the floating IP. We want the floating IP to, when accessed, to redirect to new A, firewall A; however from experiments last week, .18 connects to old A exclusively; when shutting fwa off it merely times out. We're assuming this is because of some rule in the iptables on both old A and old B that cause this. However this requires to look into how firewall builder affects the iptables or how and when firewall builder's scripts are run. In preparation for using firewall builder, we also purged the default ufw firewall on all the firewalls and disabled DHCP and DNS services on the old firewalls using `systemctl disable` command. We realized after removing ufw that there is no service to interface with the iptables. A few alternatives we looked up included the iptables.service which is not initially present in ubuntu and must be installed or extracted from an existing package, a service called netfilter-persistent which upon further research is the umbrella name for linux networking distros, including iptables, and further research into firewall builder and how it interfaces with iptables and whether or not it makes a service for iptables necessary. It was to my understanding that ufw, in addition to its service, acted as the frontend between the user and the actual iptables; without that frontend there doesn't seem to be any service that allows us to enable/disable or start/stop the filtering.
